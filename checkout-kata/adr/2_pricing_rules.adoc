@@ -1,0 +1,9 @@
+*Title*: Pricing rules
+
+*Status*: _accepted_
+
+*Context*: we want to be able to pass in pricing rules before the checkout transaction so that we can reconfigure prices and discounts over time
+
+*Decision*: all prices will be considered as integers in cents and stored in a CSV on disk. We could use a DB, API call or any other mechanism to load the prices. Everything will be encapsulated by a service so changing this will be easy moving forward if necessary
+
+*Consequences*: pricing rules will have to be updated directly in the file before running the application

@@ -1,0 +1,51 @@
+plugins {
+	id 'java-library'
+	id 'eclipse'
+	id 'idea'
+}
+
+repositories {
+    jcenter()
+}
+
+configurations {
+    acceptanceTestCompile.extendsFrom testImplementation
+    acceptanceTestRuntime.extendsFrom testRuntimeOnly
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.+'
+    testImplementation 'org.assertj:assertj-core:3.10.0'
+}
+
+sourceSets {
+    acceptanceTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/acceptance-test/java')
+        }
+        resources.srcDir file('src/acceptance-test/resources')
+    }
+}
+
+eclipse {
+	classpath {
+		plusConfigurations.add configurations.acceptanceTestCompile
+		plusConfigurations.add configurations.acceptanceTestRuntime
+	}
+}
+
+jar {
+  manifest {
+    attributes 'Main-Class' : 'plopcas.checkout.CheckoutApplication'
+  }
+}
+
+task acceptanceTest(type: Test) {
+    testClassesDir = sourceSets.acceptanceTest.output.classesDir
+    classpath = sourceSets.acceptanceTest.runtimeClasspath
+    outputs.upToDateWhen { false }
+}
+

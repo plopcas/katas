@@ -1,0 +1,9 @@
+*Title*: String utils
+
+*Status*: _accepted_
+
+*Context*: initially I was using apache-commons for a couple of StringUtils functions
+
+*Decision*: I decided remove the external dependency and implement the method I needed. The implementation of StringUtils.isBlank have been copied from `org.apache.commons.lang3.StringUtils`
+
+*Consequences*: I do not have access to all the other extra functionality that comes with apache-commons but I don't have an extra dependency either

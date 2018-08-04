@@ -1,0 +1,9 @@
+*Title*: User Interface
+
+*Status*: _accepted_
+
+*Context*: we want a simple UI to perform a supermarket checkout
+
+*Decision*: we will pass items from command-line one by one. A user can scan an unlimited number of items, therefore we will have to ask the user after every item if they are ready for checkout or if they want to scan something else
+
+*Consequences*: usage will be a little tedious but flexible enough to test the checkout algorithm

@@ -1,0 +1,9 @@
+*Title*: Handling items
+
+*Status*: _accepted_
+
+*Context*: because the UI is very simple, a user can type in a wrong item. We could handle this in different ways, returning a null, returning an empty Optional or throwing an exception are the most obvious ones
+
+*Decision*: I decided to throw a checked exception for items not found and deal with the error in the controller
+
+*Consequences*: we have to throw a few exceptions because it is checked and we need to capture it. I considered it an exception because in a real checkout a user should be scanning products or selecting from a list, not typing
